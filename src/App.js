@@ -37,6 +37,38 @@ import Button from 'shared/Button';
 import Anchor from 'shared/Anchor';
 
 
+// zergski content manager
+// copying files before processing
+const copycat = 'http://localhost/brokenOt/evilcook/src/fs/cat.php';
+
+// zcm process controll
+async function _zcmStart( list ) {
+
+	const response = await fetch(
+		copycat,
+		/**
+		 * DOWN THE LINE:
+		 * data of root ( name, directory and everything else )
+		 */
+		{
+			method: "POST",
+			headers: {
+				    'Content-Type': 'application/json',
+				  },
+			// body: JSON.stringify(list),
+			body: JSON.stringify(list),
+		}
+	);
+
+	const data = await response.text();
+
+	console.log(data);
+
+}
+
+let catArray = { catArray: [{ path: 'root', file: 'App.js' }, { path: 'Doormat', file: 'Container.jsx' }] };
+
+_zcmStart( catArray );
 
 /**
  * Assigned handler with a properties object
