@@ -1,0 +1,81 @@
+nav {
+	display: flex;
+	position: sticky;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	height: 2.4rem;
+	width: 100%;
+	z-index: 4;
+	/* background-color: #151a1c; */
+}
+
+
+
+.Section-Links {
+	display: flex;
+	position: relative;
+	align-items: center;
+	height: 100%;
+	margin-left: 10vw;
+	/* width: calc(27rem + 10vw); */
+	/* background-color: rgb(10, 10, 27); */
+}
+
+nav::before {
+	content: '';
+	position: absolute;
+	height: 200vh;
+	width: 100%;
+	top: 100vh; left: 0;
+	background-color: rgb(13, 19, 24);
+	z-index: 2;
+	transform: translate3d(0, 0, 0);
+	will-change: transform;
+}
+
+.Quick-Bar {
+	display: flex;
+	position: absolute;
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+	padding: 0 1rem;
+
+	/* transform: translate3d(0, -100%, 0); */
+
+}
+nav.stuck .Quick-Bar {
+	background-color: #0c1113;
+}
+.Quick-Bar .Anchor,
+.Quick-Bar button,
+button.book {
+	opacity: 0;
+
+	transition: opacity .2s ease-in-out;
+	transition-property: opacity;
+	will-change: opacity;
+}
+
+nav.stuck .Quick-Bar .Anchor,
+nav.stuck button.book {
+	opacity: 1;
+}
+nav.stuck button.book {
+	transition-delay: .1s;
+}
+nav.stuck .Quick-Bar button {
+	opacity: .6;
+	transition-delay: .2s;
+}
+
+button.minimal.lang {
+	top: .1rem;
+	width: 2rem;
+}
+button.minimal.lang h2 {
+	font-size: 1.2rem;
+}

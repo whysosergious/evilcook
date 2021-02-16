@@ -1,0 +1,105 @@
+h1 {
+	font-family: 'OTS', sans-serif;
+	font-weight: 500;
+	color: #fff;
+	font-size: 7.2rem;
+	line-height: 7rem;
+
+	margin-bottom: 2.5rem;
+}
+h1 span {
+	display: block;
+	font-family: 'Mistral', sans-serif;
+	font-weight: 400;
+	color: #dc9457;
+	font-size: 6.6rem;
+	margin: 0;
+}
+
+
+h2 {
+	font-family: 'OTS', sans-serif;
+	font-weight: 500;
+	font-variation-settings: 'wght' 700;
+	color: #fff;
+	font-size: 4.4rem;
+	line-height: 3.8rem;
+
+	margin-bottom: 2.3rem;
+}
+
+h3 {
+	font-family: 'Sin', sans-serif;
+	font-weight: 400;
+	/* font-variation-settings: 'wght' 275; */
+
+	font-size: 1.4rem;
+	line-height: 2.4rem;
+	color: #fff;
+}
+.About-Group h3, h3.small {
+	font-size: 1.2rem;
+	line-height: 2rem;
+}
+
+h4 {
+	font-family: 'Inter', sans-serif;
+	/* font-weight: 400; */
+	font-variation-settings: 'wght' 400;
+	font-size: 1.4rem;
+	line-height: 1.9rem;
+}
+
+h5 {
+	font-family: 'Inter', sans-serif;
+	/* font-weight: 600; */
+	font-variation-settings: 'wght' 600;
+	font-size: .9rem;
+	color: #222;
+}
+
+h1.dark, h2.dark,
+h3.dark {
+	color: var(--txt-dark);
+}
+h1.light, h2.light,
+h3.light, h4.light {
+	color: var(--txt-light);
+}
+h1.accent, h2.accent,
+h3.accent {
+	color: var(--txt-acc);
+}
+
+p {
+	margin-top: 1.4rem;
+}
+
+@media screen and (min-width: 501px) {
+	h1 {
+		font-size: 7rem;
+		line-height: 6rem;
+		margin-bottom: 2rem;
+	}
+	h1 span {
+		font-size: 5rem;
+		color: #dc9457;
+	}
+	h2 {
+		font-size: 3.4rem;
+		line-height: 3.3rem;
+		margin-bottom: 1.4rem;
+	}
+	h3 {
+		font-size: 1.25rem;
+		line-height: 2rem;
+	}
+	h3.small {
+		font-size: 1rem;
+		line-height: 1.7rem;
+	}
+	h4 {
+		font-size: .9rem;
+		line-height: 1.25rem;
+	}
+}

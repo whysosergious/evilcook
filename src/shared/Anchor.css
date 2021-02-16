@@ -1,0 +1,20 @@
+.Anchor {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 1.7rem;
+	padding: .4rem;
+	margin: .6rem;
+
+	cursor: pointer;
+}
+
+.Anchor h4 {
+	/* font-size: 1rem; */
+}
+
+.Anchor img {
+	height: 100%;
+}

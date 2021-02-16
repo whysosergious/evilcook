@@ -1,0 +1,146 @@
+/* this whole thing is a mess.. but I got it to look the way I want.. Might tidy up later */
+
+
+.Online-Booking {
+	display: flex;
+	position: relative;
+	max-width: 90vw;
+	background-color: #141718 !important;
+	background: #141718 !important;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 1rem;
+}
+
+.Online-Booking .BookingBox,
+.Online-Booking .BookingBox * {
+	font-family: 'Sin', sans-serif !important;
+	font-size: 1rem !important;
+	font-weight: 300;
+	line-height: 1.7rem;
+	background-color: #141718 !important;
+
+	border: none !important;
+	color: rgb(245, 236, 236) !important;
+}
+
+div.rowKalender * {
+	background: #141718 !important;
+}
+
+.Online-Booking .BookingBox div.col1,
+.Online-Booking .BookingBox div.title {
+	font-family: 'OTS', sans-serif !important;
+	color: #dc9457 !important;
+}
+.Online-Booking .BookingBox div.col1 {
+	font-size: 1.7rem !important;
+}
+.Online-Booking .BookingBox div.title {
+	font-size: 3rem !important;
+}
+
+.Online-Booking .BookingBox input[type=button] {
+	font-family: 'OTS', sans-serif !important;
+	font-weight: 500 !important;
+	font-size: 1.5rem !important;
+}
+
+#BookingKalender tr th {
+	background-color: #141718 !important;
+	background: #141718 !important;
+
+}
+
+#BookingKalender tr td {
+	border-color: #000 !important;
+}
+#BookingKalender tr td a.ui-state-default {
+	background: rgb(28, 36, 34) !important;
+	color: white !important;
+	padding: 1rem 0 !important;
+}
+#BookingKalender tr td a:hover,
+.BookingBoxContent .time:hover {
+	background: rgb(39, 47, 49) !important;
+}
+
+#BookingKalender tr td.etb-datepicker-unselectable span.ui-state-default {
+	color: rgb(160, 145, 145) !important;
+	padding: 1rem 0 !important;
+}
+
+.BookingBoxContent .time {
+	border-radius: .6rem;
+	width: 4.4rem !important;
+	padding: .6rem 0 !important;
+}
+
+#BookingKalender .ui-widget-content a.ui-state-active,
+.BookingBoxContent span.time_selected,
+.BookingBoxContent span.time_selected:hover {
+	background: #dc9457 !important;
+}
+
+#BookingKalender a {
+	padding: 1rem;
+}
+#BookingKalender a.etb-datepicker-next span,
+#BookingKalender a.etb-datepicker-prev span {
+	border-radius: .3rem;
+	border-right: .3rem solid #dc9457 !important;
+	border-bottom: .3rem solid #dc9457 !important;
+	transform: rotate(-45deg) scale(.8);
+}
+
+#BookingKalender a.etb-datepicker-prev span {
+	transform: rotate(135deg) scale(.8);
+}
+
+.BookingBoxContent select#BookingPersoner,
+.BookingBoxContent select#BookingPersoner:focus,
+.BookingBoxContent select#BookingPersoner option,
+.BookingBoxContent .col2 input[type=text],
+.BookingBoxContent .col2 input[type=tel],
+.BookingBoxContent .col2 input[type=tel],
+.BookingBoxContent .col2 input[type=email],
+.BookingBoxContent .col2 textarea {
+	height: 2.4rem !important;
+	border: none !important;
+	background: rgb(35, 42, 44) !important;
+	outline: #dc9457 !important;
+	color: white !important;
+}
+
+.BookingBoxContent .col2 input[type=checkbox] {
+	position: relative;
+	top: .2rem;
+	margin-right: .4rem;
+}
+.BookingBoxContent .col2 label {
+	max-width: 90%;
+	margin-right: .7rem;
+}
+
+.BookingBoxContent div.col2 div.flag-container {
+	background-color: white !important;
+	background: none !important;
+}
+
+.BookingBoxContent div.col2 div.selected-flag:focus {
+	outline: #dc9457 !important;
+}
+.BookingBoxContent div.col2 li.country,
+.BookingBoxContent li.country span {
+	background-color: rgb(26, 32, 34) !important;
+	background: rgb(26, 32, 34) !important;
+}
+
+.BookingBoxContent input.BookSubmit {
+	background: #dc9457 !important;
+}
+
+.BookingBoxContent .terms div,
+.BookingBoxContent .terms {
+	color:rgb(160, 145, 145) !important;
+}

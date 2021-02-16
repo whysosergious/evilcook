@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 126 126" xml:space="preserve">
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="21.7006" y1="-9.8422" x2="131.9984" y2="104.0301">
+	<stop  offset="2.717173e-07" style="stop-color:#DC9457"/>
+	<stop  offset="1" style="stop-color:#B4705D"/>
+</linearGradient>
+<path fill="url(#SVGID_1_)" d="M126,63c0-4-0.4-7.9-1.1-11.8c-0.3-1.7-1.9-3-3.6-3h-58c-2,0-3.7,1.7-3.7,3.7v22.1
+	c0,2,1.7,3.7,3.7,3.7H93c-1.9,3.8-4.4,7-7.4,9.8l20.9,20.9C118.5,96.9,126,80.9,126,63z"/>
+<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="24.4914" y1="-12.5454" x2="134.7893" y2="101.3269">
+	<stop  offset="2.717173e-07" style="stop-color:#DC9457"/>
+	<stop  offset="1" style="stop-color:#B4705D"/>
+</linearGradient>
+<path fill="url(#SVGID_2_)" d="M63,29.5c7.2,0,14.1,2.3,19.9,6.7c1.5,1.1,3.5,1,4.8-0.3l15.8-15.8c0.7-0.7,1.1-1.7,1.1-2.8
+	s-0.5-2-1.3-2.7C92,5.2,77.7,0,63,0C41.4,0,22.3,11,11,27.7l21.7,21.7C37.8,37.7,49.5,29.5,63,29.5L63,29.5z"/>
+<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="-18.8889" y1="29.4731" x2="91.409" y2="143.3455">
+	<stop  offset="2.717173e-07" style="stop-color:#DC9457"/>
+	<stop  offset="1" style="stop-color:#B4705D"/>
+</linearGradient>
+<path fill="url(#SVGID_3_)" d="M63,126c14.1,0,27.1-4.7,37.6-12.6L79.3,92.1c-4.9,2.7-10.4,4.3-16.3,4.3c-13.5,0-25.2-8.2-30.3-19.8
+	L11,98.3C22.3,115,41.4,126,63,126z"/>
+<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-22.1478" y1="32.6297" x2="88.1501" y2="146.5021">
+	<stop  offset="2.717173e-07" style="stop-color:#DC9457"/>
+	<stop  offset="1" style="stop-color:#B4705D"/>
+</linearGradient>
+<path fill="url(#SVGID_4_)" d="M30.1,68.3c-0.3-1.7-0.5-3.5-0.5-5.3c0-1.8,0.3-3.6,0.5-5.3L6.9,34.5C2.5,43.1,0,52.7,0,63
+	s2.5,19.9,6.9,28.5L30.1,68.3z"/>
+</svg>

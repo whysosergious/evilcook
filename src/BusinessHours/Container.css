@@ -1,0 +1,120 @@
+
+.Hours-Container {
+	position: relative;
+
+}
+
+.Business-Hours button h2 {
+	font-size: 1.3rem;
+}
+.Business-Hours h2 {
+	font-size: 2.6rem;
+}
+
+.Business-Hours h3 {
+	font-size: .9rem;
+	line-height: 1.3rem;
+}
+
+.Business-Hours {
+	width: 24rem;
+	padding: 2rem 0;
+	background-color: #141718e7;
+}
+
+.Business-Hours .headline {
+	margin-bottom: 2.4rem;
+}
+
+.Business-Hours .Button-Group {
+	justify-content: space-evenly;
+
+	margin-top: 2.7rem;
+}
+
+.Day {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 1rem;
+	/* white-space: nowrap; */
+}
+.Day :nth-child(1) {
+	text-align: left;
+	margin-right: auto;
+}
+.Day :nth-child(2) {
+	white-space: nowrap;
+	margin-left: .4rem;
+}
+
+.Hours-Message {
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+	margin-bottom: 1rem;
+}
+
+.Hours-Message h3 {
+	font-size: .7rem;
+	line-height: 1.1rem;
+	padding: 1rem 0;
+	color: rgb(199, 182, 182);
+}
+
+.Hours-Message::before,
+.Hours-Message::after {
+	content: '';
+	display: flex;
+	position: relative;
+	align-self: center;
+	top: 0;left: 0;
+	height: .14rem;
+	width: 44%;
+	background-color: white;
+	opacity: .05;
+}
+
+.Hours-Container .va {
+	--stag-mod: 3;
+}
+.Hours-Container .idle.va {
+	--stag-mod: 0;
+}
+
+.Regular-Hours,
+.Irregular-Hours {
+	padding: 0 3rem;
+}
+.Irregular-Hours {
+	position: absolute;
+	top: 0; left: 0;
+	height: 100%;
+	width: 100%;
+	/* padding-right: 3rem; */
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.Irregular-Hours .Day h3 {
+	font-size: .8rem;
+}
+
+
+@media screen and (min-width: 501px) {
+	.Business-Hours button h2 {
+		font-size: 1.3rem;
+	}
+	.Business-Hours h2 {
+		font-size: 2rem;
+	}
+
+	.Business-Hours {
+		width: 22rem;
+		background-color: #141718e7;
+	}
+
+	.Business-Hours .headline {
+		margin-bottom: 1rem;
+	}
+}

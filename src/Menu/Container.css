@@ -1,0 +1,58 @@
+.Menu-Container {
+	/* padding: 1rem 1rem 4rem 1rem; */
+	padding: 0 0 0 0;
+}
+
+.Menu-Group {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 37rem;
+	width: 100%;
+	/* transform: translate3d(0,0,30px); */
+}
+
+.Menu-Container .Button-Group {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+
+	height: 26rem;
+
+	padding-bottom: .3rem;
+}
+
+@media screen and (min-width: 650px) {
+	.Menu-Container {
+		display: flex;
+		flex-direction: row;
+		height: 33rem;
+		padding: 0rem;
+	}
+
+	.Menu-Group {
+		height: 100%;
+		width: 60%;
+		margin: 0;
+	}
+	.Menu-Group .Heading-Group {
+		max-width: 37rem;
+	}
+
+
+	.Menu-Container .Button-Group {
+		height: 80%;
+		max-height: 24rem;
+		width: 40%;
+		padding-bottom: 1rem;
+		/* padding-right: 3%; */
+	}
+
+	button.menu {
+		width: 80%;
+		max-width: 20rem;
+	}
+}

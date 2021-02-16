@@ -1,0 +1,134 @@
+/* heading */
+@font-face {
+	font-family: 'OTS';
+	src: url('ass/fonts/OTS.otf') format('opentype');
+	font-weight: 500;
+	font-display: block;
+}
+
+
+/* content text (testing) */
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-100.otf') format('opentype');
+	font-weight: 100;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-100i.otf') format('opentype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-200.otf') format('opentype');
+	font-weight: 200;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-200i.otf') format('opentype');
+	font-weight: 200;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-300.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-300i.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-400.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-400i.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-500.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-500i.otf') format('opentype');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-600.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-600i.otf') format('opentype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-700.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-700i.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-800.otf') format('opentype');
+	font-weight: 800;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-800i.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-900.otf') format('opentype');
+	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Sin';
+	src: url('ass/fonts/sin/Sin-900i.otf') format('opentype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+/* accent font */
+@font-face {
+	font-family: 'Mistral';
+	src: url('ass/fonts/Mistral.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}

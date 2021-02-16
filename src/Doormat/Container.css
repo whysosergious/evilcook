@@ -1,0 +1,77 @@
+.Promo-Container {
+	display: flex;
+	position: relative;
+	padding: 8rem 0;
+
+}
+
+
+.Promo-Container::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0; left: 0;
+
+	/* stripes */
+	background: repeating-linear-gradient( 135deg,
+		transparent,
+		transparent .3rem,
+		#000000 .3rem,
+		#000000 .6rem
+	  ),
+	  linear-gradient( to bottom,
+		rgba(221, 238, 248, 0.829),
+		transparent
+  	);
+
+	opacity: .05;
+	z-index: -1;
+}
+
+.Doormat-Container {
+	position: relative;
+	padding: 10rem 0;
+}
+
+.Doormat-Container h2 {
+	max-width: 100%;
+}
+.Doormat-Container h3 {
+	max-width: 24rem;
+}
+
+
+@media screen and (min-width: 501px) {
+	.Promo-Container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		/* height: 37rem; */
+	}
+	.Doormat-Container {
+		padding: 8rem 0;
+
+	}
+	.Doormat-Container h2 {
+		max-width: 27rem;
+
+	}
+	.Promo-Group h3 {
+		/* font-weight: 600; */
+		margin-bottom: 2rem;
+		/* max-width: 2rem; */
+
+	}
+
+
+	.Doormat-Container h3 {
+		max-width: 25rem;
+	}
+
+	.Doormat-Container img {
+		position: relative;
+		right: 2%;
+		width: unset;
+	}
+}

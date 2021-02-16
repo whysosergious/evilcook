@@ -1,0 +1,136 @@
+.Media-Viewer {
+	display: flex;
+	position: fixed;
+	justify-content: space-around;
+	align-items: center;
+	height: calc(100*var(--vh));
+	width: 100vw;
+	height: 100vh;
+	top: 0; left: 0;
+	overflow: hidden;
+	z-index: 10;
+
+	transition: opacity .4s ease;
+}
+.Media-Viewer.hide,
+.Media-Viewer.show {
+	opacity: 0;
+}
+.Media-Viewer.hidden {
+	display: none;
+}
+
+
+.Media-Viewer-Content {
+	display: flex;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	top: 0; left: 0;
+	z-index: 9;
+	transition: transform .4s ease;
+	will-change: transform;
+}
+.Media-Viewer-Content.current {
+	transform: translate3d(0,0,0);
+}
+.Media-Viewer-Content.next {
+	transform: translate3d(100vw,0,0);
+}
+.Media-Viewer-Content.prev {
+	transform: translate3d(-100vw,0,0);
+}
+
+
+.Modal-User-Interface-Wrapper {
+	display: flex;
+	position: relative;
+	justify-content: space-between;
+	align-items: center;
+	width: calc( 100vw - (100vw - 300px) / 10 );
+	opacity: .6;
+	height: calc(100*var(--vh));
+	z-index: 10;
+	transition: opacity 1.2s ease;
+	transition-delay: 4s;
+}
+
+
+.Media-Viewer .Anchor {
+	display: flex;
+	position: relative;
+	height: 3.3rem;
+	width: 3.3rem;
+	padding: 1rem .7rem 1rem 1rem;
+	opacity: .1;
+	margin-bottom: 1.7rem;
+	border-radius: 4rem;
+	cursor: pointer;
+	transition: opacity, background-color .7s ease;
+	z-index: 10;
+	transition-duration: .44s;
+}
+
+.Media-Viewer .Anchor:hover,
+.Media-Viewer:active .Modal-User-Interface-Wrapper,
+.Media-Viewer-Content:active .Modal-User-Interface-Wrapper {
+	opacity: .9;
+	transition-duration: .1s;
+	transition-delay: 0s;
+}
+.Media-Viewer .Anchor:hover {
+	opacity: .7;
+	background-color:rgba(0, 0, 0, 0.089);
+}
+
+
+/* overlay */
+.Media-Viewer::before {
+	content: '';
+	position: absolute;
+	height: 100vh;
+	width: 100%;
+	top: 0;
+	z-index: 8;
+	background-color: rgba(0, 0, 0, 0.932);
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(7px);
+	z-index: -1;
+}
+
+
+
+.Information-Box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: .4rem; right: 0; left: 0;
+	margin: 0 auto;
+	height: 2.7rem;
+	width: calc(3rem + 10vw);
+	background: rgb(220,148,87);
+	background: linear-gradient(133deg, rgba(32, 28, 24, 0.719) 0%, rgba(43, 32, 26, 0.582) 100%);
+	border-radius: .6rem;
+
+	z-index: 10;
+}
+
+.Information-Box h4 {
+	position: absolute;
+	color: #fff;
+	font-size: .85rem;
+	font-weight: 700;
+	text-shadow: 1px 2px 5px rgb(1, 4, 5);
+}
+
+@media screen and (max-width: 500px) {
+	.Information-Box {
+		/* top: 4.4rem; */
+		width: 7rem;
+	}
+	.Information-Box h4 {
+		font-size: 1rem;
+	}
+}

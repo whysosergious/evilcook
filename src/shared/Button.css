@@ -1,0 +1,172 @@
+/* alter standard button styles */
+button {
+	cursor: pointer;
+   display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	text-decoration: none;
+	line-height: 100%;
+	height: max-content;
+	width: 12rem;
+   padding: .6rem 0;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+
+   border: .1rem solid white;
+   border-radius: .4rem;
+	color: #ffffff;
+
+	background: none;
+   /* z-index: 1; */
+}
+
+button h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 2rem;
+	white-space: nowrap;
+
+	height: 100%;
+	width: 100%;
+	line-height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+/* button:hover,
+button:focus {
+   background: #0053ba;
+} */
+
+button:focus {
+   outline: transparent;
+   /* outline-offset: -4px; */
+}
+
+button.dark {
+	border-color: var(--dark);
+}
+button.dark h2 {
+	color: var(--dark);
+}
+
+
+/* button types */
+/* menu */
+button.menu {
+	position: relative;
+	width: 20rem;
+	padding: 0;
+	border: none;
+	border-radius: unset;
+	/* margin-top: 2.4rem; */
+	margin-left: .25rem;
+
+	background-color: #ffffff;
+}
+
+button.menu h2 {
+	position: relative;
+	font-size: 2.2rem;
+	top: .4rem;
+	right: .5rem;
+	margin-bottom: -.2rem;
+	padding: .6rem 0;
+	color: var(--txt-dark);
+	border: .4rem dotted var(--txt-dark);
+}
+
+
+/* minimalistic */
+button.underline {
+	border: none;
+	width: unset;
+}
+button.underline h2 {
+	font-size: 2.2rem;
+	letter-spacing: .05rem;
+	color: var(--txt-acc);
+
+	padding-bottom: .2rem;
+
+	border-bottom: .24rem solid var(--txt-acc);
+}
+button.underline.small h2 {
+	font-size: 1.3rem;
+}
+
+button.minimal {
+	width: auto;
+	padding: 0 1.4rem;
+	border: none;
+}
+button.minimal h2 {
+	font-size: 1.4rem;
+	/* opacity: .9; */
+}
+button.minimal:hover h2 {
+	transform: scale(1.1);
+}
+
+/* call to action */
+button.cta {
+	border-color: transparent;
+	background-color: var(--acc);
+}
+button.cta h2 {
+	border: none;
+}
+
+
+/* groups */
+.Button-Group {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+}
+
+.Landing-Container .Button-Group button:not(:last-child) {
+	margin-right: 7%;
+}
+
+@media screen and (min-width: 501px) {
+	.Landing-Container .Button-Group button:not(:last-child) {
+		margin-right: calc(2rem + 1%);
+	}
+}
+
+@media screen and (min-width: 501px) {
+	button {
+		width: 10rem;
+		padding: .3rem 0;
+		border-width: .17rem;
+	}
+	button h2 {
+		font-size: 1.4rem;
+
+	}
+
+	button.underline h2 {
+		font-size: 2rem;
+	}
+	button.underline.small h2 {
+		position: relative;
+		font-size: 1.2rem;
+		bottom: .2rem;
+	}
+}
+
+
+
+/* transitions */
+button h2 {
+	transition: color 1.6s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		border-color .3s cubic-bezier(0.23, 1, 0.320, 1);
+}

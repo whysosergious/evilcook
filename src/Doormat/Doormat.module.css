@@ -1,0 +1,22 @@
+.headingGroup {
+	composes: Heading-Group from "AppGeneral.css";
+	width: 94%;
+	max-width: 40rem;
+}
+
+.headingGroup_left {
+	composes: Heading-Group from "AppGeneral.css";
+	composes: left from "AppGeneral.css";
+	padding-right: 20%;
+}
+
+.background_filter {
+	composes: background from "AppGeneral.css";
+	filter: brightness(.2) contrast(1.4);
+}
+
+@media screen and (min-width: 501px) {
+	.headingGroup_left {
+		padding-right: 35%;
+	}
+}

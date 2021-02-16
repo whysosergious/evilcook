@@ -1,0 +1,79 @@
+.App {
+	--stag-mod: 0;
+}
+
+.idle {
+	pointer-events: none;
+}
+.idle >* {
+	opacity: 0;
+}
+.idle.bottom >* {
+	transform: translate3d(0, 4rem, 0);
+}
+.idle.right >* {
+	transform: translate3d(4rem, 0, 0);
+}
+.idle.left >* {
+	transform: translate3d(-4rem, 0, 0);
+}
+
+.va > :nth-child(1) {
+	--stag: 0;
+
+}
+.va > :nth-child(2) {
+	--stag: 1;
+}
+.va > :nth-child(3) {
+	--stag: 2;
+}
+.va > :nth-child(4),
+.Post-Group > :nth-child(2) > :nth-child(1) {
+	--stag: 3;
+}
+.va > :nth-child(5),
+.Post-Group > :nth-child(2) > :nth-child(2) {
+	--stag: 4;
+}
+.va > :nth-child(6),
+.Post-Group > :nth-child(2) > :nth-child(3) {
+	--stag: 5;
+}
+.va > :nth-child(7),
+.Post-Group > :nth-child(3) > :nth-child(1) {
+	--stag: 6;
+}
+.va > :nth-child(8),
+.Post-Group > :nth-child(3) > :nth-child(2) {
+	--stag: 7;
+}
+.va > :nth-child(9),
+.Post-Group > :nth-child(3) > :nth-child(3) {
+	--stag: 8;
+}
+
+.va >* {
+	transition: opacity .4s ease, transform .6s ease-out;
+	will-change: opacity, transform;
+	transition-delay: calc(.06s * calc(var(--stag) + var(--stag-mod)));
+}
+
+
+
+/* nav */
+nav.down::before,
+nav.up::before {
+	/* top: 0; */
+	transition: transform .75s cubic-bezier(0.395, 0.690, 0.690, 0.400) .1s;
+	/* transition-property: transform, opacity; */
+}
+nav.down::before {
+	/* opacity: 1; */
+	transform: translate3d(0, -300vh, 0);
+}
+nav.up::before {
+	top: -200vh;
+	/* opacity: 1; */
+	transform: translate3d(0, 300vh, 0);
+}

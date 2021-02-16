@@ -1,0 +1,82 @@
+.Contact-Group {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	height: max-content;
+	width: 100%;
+	padding: 6rem 0;
+}
+
+.Contact-Group .Heading-Group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+.Contact-Message {
+	width: 90%;
+	max-width: 36rem;
+}
+
+.Contact-Group .overlay::after {
+	background-color: rgba(29, 0, 0, 0.877);
+}
+
+
+.Business-Hours-Wrapper {
+	display: flex;
+	position: relative;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 6rem 0;
+	height: 100%;
+	width: 100%;
+}
+section.Contact-Container {
+	position: relative;
+	/* background-color: #090811; */
+	background-color: #0a080f;
+}
+.Contact-Container::after,
+.striped::after {
+	content: '';
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0; left: 0;
+
+	/* stripes */
+	background: repeating-linear-gradient( 135deg,
+		transparent,
+		transparent .3rem,
+		#ff0000 .3rem,
+		#ff0000 .6rem
+
+  	);
+
+	opacity: .07;
+}
+
+.Anchor-Group {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	max-width: 30rem;
+}
+
+
+@media screen and (min-width: 501px) {
+	.Contact-Container {
+		flex-direction: row;
+	}
+
+	.Contact-Group {
+		width: 60%;
+	}
+
+	.Contact-Container .Business-Hours-Wrapper {
+		width: 40%;
+	}
+}

@@ -1,0 +1,86 @@
+.Landing-Container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100 * var(--vh));
+	height: max-content;
+	background-color: #000;
+}
+
+.Landing-Container button.small h2 {
+	margin-top: .2rem;
+}
+
+.Greeting-Group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	margin-top: 3vw;
+	margin-bottom: 15%;
+}
+
+
+.Greeting-Group h1 {
+	font-size: 7.7rem;
+	margin: 0;
+}
+.Greeting-Group h1 span {
+	font-size: 3.8rem;
+	line-height: 4.4rem;
+}
+.Greeting-Group h2 {
+	position: relative;
+	font-size: 1.6rem;
+	width: 90%;
+	letter-spacing: 1.6rem;
+	padding-left: 2rem;
+	margin-top: .7rem;
+	color: #dc9457;
+	border-top: .3rem solid #dc9457;
+	/* border-bottom: .17rem solid white; */
+}
+
+@media screen and (min-width: 501px) {
+	.Landing-Container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: calc(100 * var(--vh) - 2.2rem);
+		height: max-content;
+		background-color: #000;
+	}
+
+	.Landing-Container button.small h2 {
+		margin-top: .2rem;
+	}
+
+	.Greeting-Group {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		margin-top: 3vw;
+		margin-bottom: 2rem;
+	}
+
+
+	.Greeting-Group h1 {
+		font-size: 9rem;
+		margin: 0;
+	}
+	.Greeting-Group h1 span {
+		font-size: 4.2rem;
+	}
+	.Greeting-Group h2 {
+		position: relative;
+		font-size: 1.7rem;
+		width: 90%;
+		letter-spacing: 2rem;
+		padding-left: 2rem;
+		margin-top: 1.4rem;
+		color: #dc9457;
+		border-top: .3rem solid #dc9457;
+		/* border-bottom: .17rem solid white; */
+	}
+}
