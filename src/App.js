@@ -38,8 +38,23 @@ import Anchor from 'shared/Anchor';
 
 
 // zergski content manager
-// copying files before processing
+// copying files before processing 
 const copycat = 'http://localhost/brokenOt/evilcook/src/fs/cat.php';
+
+const _evilcook = {
+	/**
+	 * @param {boolean} [ log ] : well, display the console log ofcourse 
+	 * <p>  
+	 * @param {string , null} [ baseUrl ] : set if you have defined a 'baseUrl' in your jsconfig.json. setting to 'src is very handy, is recommended and will simply remove all './' from imports. null will replace them with '../' and is the simplest solution. if a custom 'url' is set, keep in mind to define the child directory ( i.e if set to 'src', but all your imports go through 'src/components', set baseUrl to 'components'.)
+	 * </p>
+	 */
+	options: {
+		log: true,
+		baseUrl: 'src',
+	}
+}
+const { baseUrl } = _evilcook.options;
+_evilcook.options.importPath = baseUrl === 'src' ? "'" : baseUrl === null ? "'../" : `'${baseUrl}/` ;
 
 // zcm process controll
 async function _zcmStart( list ) {
@@ -60,10 +75,20 @@ async function _zcmStart( list ) {
 		}
 	);
 
-	const data = await response.text();
+	// const data = await response.text();
+	const { log, content } = await response.json();
 
-	console.log(data);
+	_evilcook.options.log && log.forEach( entry => console.log(entry));
+	console.log(content);
+	content.forEach( ( component, index ) => _processComponent( content, component, index ))
 
+
+}
+
+function _processComponent( content, component, index ) {
+	let { importPath } = _evilcook.options;
+	content[index].data.code = component.data.code.replace(/'.\//g, importPath);
+	console.log(component);
 }
 
 let catArray = { catArray: [{ path: 'root', file: 'App.js' }, { path: 'Doormat', file: 'Container.jsx' }] };
