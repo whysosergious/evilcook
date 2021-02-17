@@ -10,10 +10,8 @@ import { useGlobalObj, globalObj, createObserver, queueFrame } from 'zergski-glo
 import 'logic/zergski-content-manager';
 import { routerHook, useRouterHook } from 'logic/router';
 
-import Home from './Pages/Home';
+import Home from 'Pages/Home';
 
-// nav
-import Navigation from './Navigation/Container';
 
 // Page Sections
 import LandingContainer from './Landing/Container';
@@ -41,6 +39,9 @@ import Anchor from 'shared/Anchor';
 // copying files before processing 
 const copycat = 'http://localhost/brokenOt/evilcook/src/fs/cat.php';
 
+
+// const _evilcook = {
+// TEMP
 const _evilcook = {
 	/**
 	 * @param {boolean} [ log ] : well, display the console log ofcourse 
@@ -48,6 +49,13 @@ const _evilcook = {
 	 * @param {string , null} [ baseUrl ] : set if you have defined a 'baseUrl' in your jsconfig.json. setting to 'src is very handy, is recommended and will simply remove all './' from imports. null will replace them with '../' and is the simplest solution. if a custom 'url' is set, keep in mind to define the child directory ( i.e if set to 'src', but all your imports go through 'src/components', set baseUrl to 'components'.)
 	 * </p>
 	 */
+	components: {
+		loaded: {
+			index: '.js',
+		},
+		collection: [],
+		count: 0,
+	},
 	options: {
 		log: true,
 		baseUrl: 'src',
@@ -56,42 +64,123 @@ const _evilcook = {
 const { baseUrl } = _evilcook.options;
 _evilcook.options.importPath = baseUrl === 'src' ? "'" : baseUrl === null ? "'../" : `'${baseUrl}/` ;
 
-// zcm process controll
-async function _zcmStart( list ) {
+window.cook = _evilcook;
 
+/**
+ * We make copies of all imported and used components
+ * @param {Array} list 
+ */
+async function _zcmStart( list ) {
+	console.log(list);
 	const response = await fetch(
 		copycat,
-		/**
-		 * DOWN THE LINE:
-		 * data of root ( name, directory and everything else )
-		 */
 		{
 			method: "POST",
 			headers: {
-				    'Content-Type': 'application/json',
-				  },
-			// body: JSON.stringify(list),
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify(list),
 		}
 	);
-
-	// const data = await response.text();
 	const { log, content } = await response.json();
 
 	_evilcook.options.log && log.forEach( entry => console.log(entry));
-	console.log(content);
-	content.forEach( ( component, index ) => _processComponent( content, component, index ))
-
-
+	
+	content.forEach( ( component, index ) => {
+		_evilcook.components.collection.push(component);
+		_evilcook.components.count++;
+		
+		_processComponent( content, component, index );
+	});
 }
 
-function _processComponent( content, component, index ) {
+async function _processComponent ( content, component, index ) {
 	let { importPath } = _evilcook.options;
-	content[index].data.code = component.data.code.replace(/'.\//g, importPath);
-	console.log(component);
+	let { code } = content[index].data;
+	let { loaded } = _evilcook.components;
+
+	component.data.name === 'Home' && console.log(code);
+
+	let matches = code.match(/<[A-Z].*\/>/g)?.map( res => res.replace(/<|\s+|\/+|>+/g, ''));
+	
+	let routes = code.match(/<Route.*\/>/g)?.map( res => { return res.replace(/^.+{ | }.+$/g, '') });
+	let imports = code.split('import');
+	let body = imports.pop();
+	let variables = splitByVariables(body);
+	let componentPath = [];
+	matches || ( matches = [matches] );
+	let keys = [];
+	if ( routes ) {
+		keys = [ ...routes, ...keys ];
+	}
+	if ( matches[0] ) {
+		let check = [];
+		console.log( matches );
+		matches.forEach( match => {
+			if ( match !== undefined ) {
+				if ( loaded[ match ] === match ) {
+					console.log( match, 'repeated');
+				} else {
+					check.push( match );
+				}
+			}
+		});
+
+		check[0] && ( keys = [ ...check, ...keys ] );
+	}
+	// if ( variables ) {
+	// 	keys = [ ...variables, ...keys ];
+	// } 
+
+
+
+	imports.forEach( line =>
+		keys?.forEach( key => {
+
+			if ( line.includes(key) ) {
+				loaded[ key ] = key;
+				componentPath.push( line.match(/'.+'|".+"/g)[0].replace(/\.+|"+|'+/g, '').split('/') );
+			} else {
+				return;
+			}
+	}));
+
+	catArray.catArray = [];
+	// filePath = {};
+	componentPath.forEach( c => {
+		if ( loaded[ c[0] ]?.includes(c[1]) ) {
+			console.log( c[1], 'repeated');
+		} else {
+			console.log(c);
+			c[0] === '' && c.shift();
+			filePath = { file: c.pop(), path: c.join('/') === '' ? 'root' : c.join('/') }
+			catArray.catArray.push( filePath );
+		}
+	})
+	// catArray.catArray.pop();
+	// console.log(catArray.catArray[0]);
+	catArray.catArray[0] && _zcmStart( catArray );
 }
 
-let catArray = { catArray: [{ path: 'root', file: 'App.js' }, { path: 'Doormat', file: 'Container.jsx' }] };
+function splitByVariables(source) {
+	var splitters = [ 'const', 'let', 'var' ];
+  splitters.push([source]);
+
+  return splitters.reduceRight(function(accumulator, curValue) {
+    var k = [];
+    accumulator.forEach(v => k = [...k, ...v.split(curValue)]);
+    return k;
+  });
+}
+
+
+
+
+
+
+// we start with index.js
+let filePath = {};
+let catArray = { catArray: [ { file: 'index', path: 'root' }]};
 
 _zcmStart( catArray );
 
