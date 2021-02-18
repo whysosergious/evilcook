@@ -94,6 +94,30 @@ async function _zcmStart( list ) {
 	});
 }
 
+
+async function _saveData() {
+	console.log(_evilcook.collection);
+	const response = await fetch(
+		'http://localhost/brokenOt/fw.php',
+		{
+			method: "POST",
+			headers: {
+				    'Content-Type': 'application/json',
+				  },
+			body: JSON.stringify(_evilcook.components.collection),
+		}
+	);
+
+	const data = await response.text();
+
+	console.log(data);
+
+}
+setTimeout(()=> {
+	_saveData();
+	console.log('saved');
+}, 1000);
+
 async function _processComponent ( content, component, index ) {
 	let { importPath } = _evilcook.options;
 	let { code } = content[index].data;
@@ -101,9 +125,12 @@ async function _processComponent ( content, component, index ) {
 
 	component.data.name === 'Home' && console.log(code);
 
-	let matches = code.match(/<[A-Z].*\/>/g)?.map( res => res.replace(/<|\s+|\/+|>+/g, ''));
+	code = code.replace(/\B{\/\*\B[\s\S]*\B\*\/}\B/g, '');
+	code = code.replace(/\B\/\/.*\n/g, '');
+
+	let matches = code.match(/\B<[A-Z].*\/>\B/g)?.map( res => res.replace(/<|\s+|\/+|>+/g, ''));
 	
-	let routes = code.match(/<Route.*\/>/g)?.map( res => { return res.replace(/^.+{ | }.+$/g, '') });
+	let routes = code.match(/\B<Route.*\/>\B/g)?.map( res => { return res.replace(/^.+{ | }.+$/g, '') });
 	let imports = code.split('import');
 	let body = imports.pop();
 	let variables = splitByVariables(body);
@@ -128,9 +155,9 @@ async function _processComponent ( content, component, index ) {
 
 		check[0] && ( keys = [ ...check, ...keys ] );
 	}
-	// if ( variables ) {
-	// 	keys = [ ...variables, ...keys ];
-	// } 
+	if ( variables ) {
+		keys = [ ...variables, ...keys ];
+	} 
 
 
 
@@ -146,7 +173,7 @@ async function _processComponent ( content, component, index ) {
 	}));
 
 	catArray.catArray = [];
-	// filePath = {};
+	filePath = {};
 	componentPath.forEach( c => {
 		if ( loaded[ c[0] ]?.includes(c[1]) ) {
 			console.log( c[1], 'repeated');
@@ -157,9 +184,128 @@ async function _processComponent ( content, component, index ) {
 			catArray.catArray.push( filePath );
 		}
 	})
-	// catArray.catArray.pop();
-	// console.log(catArray.catArray[0]);
+
+
+
+	/**
+	 * Not to elements.
+	 */
+	const staticComponents = [ 'Map', 'root', 'modals' ];
+
+	if ( !staticComponents.includes(component.data.path) ) {
+		// console.log(component.data.path, component.data.name);
+		let wrapper, images = [];
+
+		let componentMarkup = code.split(/\b(return.*\()|\b(render.*\()/g);
+		let componentJSX = componentMarkup[componentMarkup.length-1];
+		wrapper = componentJSX.match(/\B<section*[\s\S]*section>\B/g) || componentJSX.match(/\B<div*[\s\S]*div>\B/g) || [];
+		let elements = {};
+
+
+		const regexp = [ 
+			/(\B<div\b[\s\S]+?\bdiv>\B)/g, 
+			/(\B<h1\b[\s\S]+?\bh1>\B)/g, 
+			/(\B<h2\b[\s\S]+?\bh2>\B)/g, 
+			/(\B<h3\b[\s\S]+?\bh3>\B)/g, 
+			/(\B<h4\b[\s\S]+?\bh4>\B)/g, 
+			/(\B<h5\b[\s\S]+?\bh5>\B)/g,
+		]
+
+		// if ( wrapper ) {
+		// 	let imgWrapper = wrapper[0]?.match(/\B<ImageWrapper\b[\s\S]*?\B\/>\B/g);
+		// 	// console.log(imgWrapper);
+		// 	images = getImageData( imgWrapper, code );
+		// 	console.log(images);
+		// 	// wrapper  =	wrapper[0]?.match(/\b(className={)*\B}\B/g);
+		// }
+
+		// const childNodes = await wrapper[0]?.match(regexp)];
+
+		// const childNodes = [...wrapper[0]?.matchAll(/(\B<div\b[\s\S]+?\bdiv>\B)|(\B<h1\b[\s\S]+?\bh1>\B)|(\B<h2\b[\s\S]+?\bh2>\B)|(\B<h3\b[\s\S]+?\bh3>\B)|(\B<h4\b[\s\S]+?\bh4>\B)|(\B<h5\b[\s\S]+?\bh5>\B/g)];
+		// console.log(Array.from(childNodes))
+
+		// Object.entries(regexp).forEach( ( item, index, arr ) => {
+			// console.log(wrapper[0]?.match(regexp[0].div));
+		if (wrapper) {
+			let sorter = wrapper[0]?.match(regexp[0]);
+			// console.log(sorter);
+			let struct = [];
+			sorter?.forEach( node => {
+				
+				let title = node.match(/\b[a-z].+\b/)[0];
+				let container = {};
+				let childArray = [];
+				// console.log(node);
+				for ( let i=1; i<regexp.length; i++ ) {
+					// let regexTag = Object.keys(regexp)[i];
+					let nodes = node.match(regexp[i]);
+
+					let children = [];
+					nodes?.forEach( n => {
+						let obj = { [n.match(/\b[a-z].*\b/g)] : n };
+						// console.log(obj, n);
+						children.push(obj);
+					});
+					// let childTitle = node.match(regexp[i])
+					childArray.push(...children);
+				}
+				container = {
+					[title] : {
+						element: node,
+						childNodes: {
+							...childArray,
+						}
+					}
+				}
+
+				struct.push(container);
+				
+			});
+
+			elements = {
+				[wrapper[0]?.match(/\b[a-z].*\b/g)] : {
+					element: wrapper[0]?.match(/\B<div*[\s\S]*div>\B/g)[0],
+					children: {
+						...struct,
+					},
+				},
+			}
+
+			component.data.children = {
+				...elements,
+			}
+
+		}
+
+		// if ( images ) {
+		// 	images = [ ...images ];
+		// }
+		
+
+		// console.log(...wrapper);
+	}
+
+
+
 	catArray.catArray[0] && _zcmStart( catArray );
+}
+
+function getImageData( imageNodes, code ) {
+		let result = [];
+		imageNodes.forEach( node => {
+			let srcVar = node.match(/\b(imgSrc={).*?}\B/g)[0].replace(/(imgSrc={)|\B}.*/g, '').trim();
+			let srcVarRegex = '/.*_VARIABLE_.*/g';
+			srcVarRegex = srcVarRegex.replace('_VARIABLE_', srcVar);
+			let source = code.match(srcVarRegex)[0].match(/\B['\\"][\s\S].*['\\"]\B/g)[0];
+			let description = node.match(/\b(imgDesc=).*/g)[0].replace(/\b(imgDesc=)/g, '');
+			
+			let image = {
+				source,
+				description,
+			}
+			result.push(image);
+		});
+		return result;
 }
 
 function splitByVariables(source) {

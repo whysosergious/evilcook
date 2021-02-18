@@ -1,3 +1,20 @@
+Frickin regex .. select from {/* to */} => \B{\/*\B[\s\S]*?[\s\S]*?\B\*\/}\B
+
+\B{\/\*\B[\s\S]*\B\*\/}\B
+
+from // and to end of line removing the \n => \B\/\/.*\n
+
+multiline component => \B<[A-Z]*[\s\S]*\/>\B
+
+
+
+
+
+
+
+
+
+
 color pallete:
 
 dark: #151a1c

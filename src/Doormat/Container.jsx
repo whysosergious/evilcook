@@ -84,6 +84,8 @@ const _zcm = ( name, section='shared' ) => {
 }
 
 
+
+
 const DoormatContainer = props => {
 	const Promo = {
 		ref: useRef(null),
@@ -133,11 +135,11 @@ const DoormatContainer = props => {
 
 
 				<div className={ `${ styles.headingGroup } ${ promoState } va` }>
-					<h1><span>{ _zcm('headingSpan', 'promo') }</span>{ _zcm('heading', 'promo') }</h1>
-					<h3>{ _zcm('body', 'promo') }
+					<h1><span>En av de bästa</span>I världen</h1>
+					<h3>bodytext
 					</h3>
 					<Button altClass="underline"
-						text={ _zcm('moreButton') }
+						text="Läs mer"
 						style={{ marginTop: '3rem' }}
 					/>
 				</div>
