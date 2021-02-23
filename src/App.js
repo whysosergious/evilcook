@@ -40,6 +40,19 @@ import Anchor from 'shared/Anchor';
 const copycat = 'http://localhost/brokenOt/evilcook/src/fs/cat.php';
 
 
+// just some tools..
+const z = {
+	console: true,
+	display: false,
+	log (a,b,c,d,e,f) {
+
+		if ( console ) {
+			// console.log(a,b,c,d,e,f);
+		}
+	},
+}
+
+
 // const _evilcook = {
 // TEMP
 const _evilcook = {
@@ -59,7 +72,7 @@ const _evilcook = {
 	options: {
 		log: true,
 		baseUrl: 'src',
-	}
+	},
 }
 const { baseUrl } = _evilcook.options;
 _evilcook.options.importPath = baseUrl === 'src' ? "'" : baseUrl === null ? "'../" : `'${baseUrl}/` ;
@@ -71,7 +84,7 @@ window.cook = _evilcook;
  * @param {Array} list 
  */
 async function _zcmStart( list ) {
-	console.log(list);
+
 	const response = await fetch(
 		copycat,
 		{
@@ -93,7 +106,7 @@ async function _zcmStart( list ) {
 		_processComponent( content, component, index );
 	});
 }
-
+let dataa = {};
 
 async function _saveData() {
 	console.log(_evilcook.collection);
@@ -104,7 +117,7 @@ async function _saveData() {
 			headers: {
 				    'Content-Type': 'application/json',
 				  },
-			body: JSON.stringify(_evilcook.components.collection),
+			body: JSON.stringify(dataa),
 		}
 	);
 
@@ -118,22 +131,26 @@ setTimeout(()=> {
 	console.log('saved');
 }, 1000);
 
+
+
 async function _processComponent ( content, component, index ) {
 	let { importPath } = _evilcook.options;
-	let { code } = content[index].data;
+	let { rawComponent } = content[index].data;
 	let { loaded } = _evilcook.components;
 
-	component.data.name === 'Home' && console.log(code);
 
-	code = code.replace(/\B{\/\*\B[\s\S]*\B\*\/}\B/g, '');
-	code = code.replace(/\B\/\/.*\n/g, '');
+	// just tested by removing comments
+	z.log(rawComponent);
+	rawComponent = rawComponent.replace(/\B{\/\*\B[\s\S]*\B\*\/}\B/g, '');
+	rawComponent = rawComponent.replace(/\B\/\/.*\n/g, '');
 
-	let matches = code.match(/\B<[A-Z].*\/>\B/g)?.map( res => res.replace(/<|\s+|\/+|>+/g, ''));
+
+	let matches = rawComponent.match(/\B<[A-Z].*\/>\B/g)?.map( res => res.replace(/<|\s+|\/+|>+/g, ''));
 	
-	let routes = code.match(/\B<Route.*\/>\B/g)?.map( res => { return res.replace(/^.+{ | }.+$/g, '') });
-	let imports = code.split('import');
+	let routes = rawComponent.match(/\B<Route.*\/>\B/g)?.map( res => { return res.replace(/^.+{ | }.+$/g, '') });
+	let imports = rawComponent.split('import');
 	let body = imports.pop();
-	let variables = splitByVariables(body);
+	// let variables = splitByVariables(body);
 	let componentPath = [];
 	matches || ( matches = [matches] );
 	let keys = [];
@@ -142,11 +159,10 @@ async function _processComponent ( content, component, index ) {
 	}
 	if ( matches[0] ) {
 		let check = [];
-		console.log( matches );
 		matches.forEach( match => {
 			if ( match !== undefined ) {
 				if ( loaded[ match ] === match ) {
-					console.log( match, 'repeated');
+					z.log( match, 'already processed' );
 				} else {
 					check.push( match );
 				}
@@ -155,9 +171,9 @@ async function _processComponent ( content, component, index ) {
 
 		check[0] && ( keys = [ ...check, ...keys ] );
 	}
-	if ( variables ) {
-		keys = [ ...variables, ...keys ];
-	} 
+	// if ( variables ) {
+	// 	keys = [ ...variables, ...keys ];
+	// } 
 
 
 
@@ -172,131 +188,114 @@ async function _processComponent ( content, component, index ) {
 			}
 	}));
 
-	catArray.catArray = [];
+	Polly.catArray = [];
 	filePath = {};
 	componentPath.forEach( c => {
 		if ( loaded[ c[0] ]?.includes(c[1]) ) {
 			console.log( c[1], 'repeated');
 		} else {
-			console.log(c);
+			// console.log(c);
 			c[0] === '' && c.shift();
 			filePath = { file: c.pop(), path: c.join('/') === '' ? 'root' : c.join('/') }
-			catArray.catArray.push( filePath );
+			Polly.catArray.push( filePath );
 		}
 	})
 
 
 
 	/**
-	 * Not to elements.
+	 * Now to elements.
 	 */
 	const staticComponents = [ 'Map', 'root', 'modals' ];
 
 	if ( !staticComponents.includes(component.data.path) ) {
-		// console.log(component.data.path, component.data.name);
-		let wrapper, images = [];
-
-		let componentMarkup = code.split(/\b(return.*\()|\b(render.*\()/g);
-		let componentJSX = componentMarkup[componentMarkup.length-1];
-		wrapper = componentJSX.match(/\B<section*[\s\S]*section>\B/g) || componentJSX.match(/\B<div*[\s\S]*div>\B/g) || [];
-		let elements = {};
 
 
-		const regexp = [ 
-			/(\B<div\b[\s\S]+?\bdiv>\B)/g, 
-			/(\B<h1\b[\s\S]+?\bh1>\B)/g, 
-			/(\B<h2\b[\s\S]+?\bh2>\B)/g, 
-			/(\B<h3\b[\s\S]+?\bh3>\B)/g, 
-			/(\B<h4\b[\s\S]+?\bh4>\B)/g, 
-			/(\B<h5\b[\s\S]+?\bh5>\B)/g,
-		]
 
-		// if ( wrapper ) {
-		// 	let imgWrapper = wrapper[0]?.match(/\B<ImageWrapper\b[\s\S]*?\B\/>\B/g);
-		// 	// console.log(imgWrapper);
-		// 	images = getImageData( imgWrapper, code );
-		// 	console.log(images);
-		// 	// wrapper  =	wrapper[0]?.match(/\b(className={)*\B}\B/g);
-		// }
+		// const regexp = [
+		// 	// /(\B<section\b[\s\S]+?\bsection>\B)/g,
+		// 	/(\B<div\b[\s\S]+?\bdiv>\B)/g, 
+		// 	/(\B<h1\b[\s\S]+?\bh1>\B)/g, 
+		// 	/(\B<h2\b[\s\S]+?\bh2>\B)/g, 
+		// 	/(\B<h3\b[\s\S]+?\bh3>\B)/g, 
+		// 	/(\B<h4\b[\s\S]+?\bh4>\B)/g, 
+		// 	/(\B<h5\b[\s\S]+?\bh5>\B)/g,
+		// 	// /(\B<a\b[\s\S]+?\ba>\B)/g,
+		// 	// /(\B<button\b[\s\S]+?\bbutton>\B)/g,
+		// 	/(\B<Button\b[\s\S]+?\B\/>\B)/g,
+		// 	// /(\B<img\b[\s\S]+?\bimg>\B)/g,
+		// 	/(\B<nav\b[\s\S]+?\bnav>\B)/g,
+		// 	/(\B<span\b[\s\S]+?\bspan>\B)/g,
 
-		// const childNodes = await wrapper[0]?.match(regexp)];
+		// ]
 
-		// const childNodes = [...wrapper[0]?.matchAll(/(\B<div\b[\s\S]+?\bdiv>\B)|(\B<h1\b[\s\S]+?\bh1>\B)|(\B<h2\b[\s\S]+?\bh2>\B)|(\B<h3\b[\s\S]+?\bh3>\B)|(\B<h4\b[\s\S]+?\bh4>\B)|(\B<h5\b[\s\S]+?\bh5>\B/g)];
-		// console.log(Array.from(childNodes))
 
-		// Object.entries(regexp).forEach( ( item, index, arr ) => {
-			// console.log(wrapper[0]?.match(regexp[0].div));
-		if (wrapper) {
-			let sorter = wrapper[0]?.match(regexp[0]);
-			// console.log(sorter);
-			let struct = [];
-			sorter?.forEach( node => {
-				
-				let title = node.match(/\b[a-z].+\b/)[0];
-				let container = {};
-				let childArray = [];
-				// console.log(node);
-				for ( let i=1; i<regexp.length; i++ ) {
-					// let regexTag = Object.keys(regexp)[i];
-					let nodes = node.match(regexp[i]);
+		// let markupArray = rawComponent.replace(/(\n\s+)/g, '').replace(/(>\B)/g, '>|?').replace(/(\B<)/g, '|?<').split('|?');
 
-					let children = [];
-					nodes?.forEach( n => {
-						let obj = { [n.match(/\b[a-z].*\b/g)] : n };
-						// console.log(obj, n);
-						children.push(obj);
-					});
-					// let childTitle = node.match(regexp[i])
-					childArray.push(...children);
-				}
-				container = {
-					[title] : {
-						element: node,
-						childNodes: {
-							...childArray,
-						}
-					}
-				}
+		// markupArray = markupArray.filter( entry => {
+		// 	if ( entry.includes('</') ) return '}';
+		// 	if ( /(<([^>]+)>)/i.test(entry) ) return { [entry.replace(/\s?[^\w]+\B.|"|<| /g, '_')] : entry };
+		// });
+		// // let temp = { ...markupArray }
+		// component.data.content = markupArray;
+		
+		let editable = [];
+		
+		// let 
+		document.querySelectorAll('[data-zcm]').forEach( e => {
+			let keys = e.dataset.zcm.split('.');
+			let entry = e.innerHTML;
+			// data = data[keys[0]] ? data : { [keys[0]]: entry };
 
-				struct.push(container);
-				
-			});
-
-			elements = {
-				[wrapper[0]?.match(/\b[a-z].*\b/g)] : {
-					element: wrapper[0]?.match(/\B<div*[\s\S]*div>\B/g)[0],
-					children: {
-						...struct,
-					},
-				},
+			if ( !dataa[keys[0]] ) {
+				dataa[keys[0]] = {};
 			}
-
-			component.data.children = {
-				...elements,
+			if ( !dataa[keys[0]][keys[1]] ) {
+				dataa[keys[0]][keys[1]] = {};
 			}
+			if ( keys[2] ) {
+				if ( !dataa[keys[0]][keys[1]][keys[2]] ) {
+					dataa[keys[0]][keys[1]][keys[2]] = {};
+				}
+				dataa[keys[0]][keys[1]][keys[2]] = entry;
+			} else {
+				dataa[keys[0]][keys[1]] = entry;
+			}
+			
+			// for ( let i=keys.length-1; i>=0; i-- ) {
+			// 	entry = { [keys[i]]: entry };
+			// }
 
-		}
-
-		// if ( images ) {
-		// 	images = [ ...images ];
-		// }
+			// data = {  ...data, ...entry };
+			// Object.assign(data[keys[0]], entry[keys[0]]);
+			// console.log(entry)
+			
+			editable.push({ inner : e.innerHTML, name: e.dataset.zcm });
+		});
+		console.log(dataa);
+		// let elements = [];
+		editable.forEach(e => {
+			rawComponent = rawComponent.replace(e.inner, `{ ZCM.${e.name} }`);
+		})
 		
 
-		// console.log(...wrapper);
+		console.log(rawComponent);
+
+
 	}
 
 
 
-	catArray.catArray[0] && _zcmStart( catArray );
+	Polly.catArray[0] && _zcmStart( Polly );
 }
 
-function getImageData( imageNodes, code ) {
+function getImageData( imageNodes, rawComponent ) {
 		let result = [];
 		imageNodes.forEach( node => {
 			let srcVar = node.match(/\b(imgSrc={).*?}\B/g)[0].replace(/(imgSrc={)|\B}.*/g, '').trim();
 			let srcVarRegex = '/.*_VARIABLE_.*/g';
 			srcVarRegex = srcVarRegex.replace('_VARIABLE_', srcVar);
-			let source = code.match(srcVarRegex)[0].match(/\B['\\"][\s\S].*['\\"]\B/g)[0];
+			let source = rawComponent.match(srcVarRegex)[0].match(/\B['\\"][\s\S].*['\\"]\B/g)[0];
 			let description = node.match(/\b(imgDesc=).*/g)[0].replace(/\b(imgDesc=)/g, '');
 			
 			let image = {
@@ -326,9 +325,9 @@ function splitByVariables(source) {
 
 // we start with index.js
 let filePath = {};
-let catArray = { catArray: [ { file: 'index', path: 'root' }]};
+let Polly = { catArray: [ { file: 'index', path: 'root' }]};
 
-_zcmStart( catArray );
+_zcmStart( Polly );
 
 /**
  * Assigned handler with a properties object

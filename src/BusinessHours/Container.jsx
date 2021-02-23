@@ -22,7 +22,7 @@ const BusinessHours = ({ altClass }) => {
 
    return (
 		<div className={ `Business-Hours ${ altClass }` }>
-			<h2 className="headline" >Våra Öppettider</h2>
+			<h2 className="headline" data-zcm="hours.heading">Våra Öppettider</h2>
 			<div className="Hours-Container">
 				<div className={ `Regular-Hours ${ state === 'regular' ? '' : 'idle' } va` }>
 					<Day day={ `Måndag` } hours= { `13 - 20` } />

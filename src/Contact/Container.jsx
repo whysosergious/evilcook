@@ -54,10 +54,10 @@ const ContactContainer = props => {
 						altClass="background overlay"
 					/>
 					<div className={ `Heading-Group ${ headingState } va` } ref={ ContactHeading.ref }>
-						<h2>
+						<h2 data-zcm="contact.heading">
 							Kontakta oss
 						</h2>
-						<h3 className="Contact-Message small light">
+						<h3 className="Contact-Message small light" data-zcm="contact.body">
 							Har du frågor? Hesitera inte att höra av dig via telefon eller mejl! Boka bord gör du enkelt online för begränsad antal i sällskapet. För större sällskap ring eller mejla så ordnar vi det!
 							<p>
 								OBS! På grund av rådande begränsningar under pandemin kan vi inte ta emot sällskap med fler än fyra personer.

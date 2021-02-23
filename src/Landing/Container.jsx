@@ -20,8 +20,8 @@ const LandingContainer = props => {
 
 			<div className="Greeting-Group">
 
-				<h1><span>Välkommen hem till</span>Oliver Twist</h1>
-				<h2>-Stockholm-</h2>
+				<h1 data-zcm="landing.heading"><span>Välkommen hem till</span>Oliver Twist</h1>
+				<h2 data-zcm="landing.subheading">-Stockholm-</h2>
 			</div>
 
 			<div className="Button-Group">

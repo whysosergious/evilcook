@@ -39,10 +39,10 @@ const NewsContainer = props => {
 			<div className={ `Heading-Group ${ headingState } va` } ref={ NewsHeading.ref }
 				style={{ width: '80%', maxWidth: '30rem', marginBottom: '4rem' }}
 			>
-				<h1 className="dark">
+				<h1 className="dark" data-zcm="news.heading">
 					<span>Senaste</span>Nyheter
 				</h1>
-				<h3 className="dark">
+				<h3 className="dark" data-zcm="news.body">
 					Evenemang, nysläpp och mycket mer uppdaterat dagligen.
 				</h3>
 			</div>

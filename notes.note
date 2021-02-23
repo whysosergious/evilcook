@@ -7,7 +7,7 @@ from // and to end of line removing the \n => \B\/\/.*\n
 multiline component => \B<[A-Z]*[\s\S]*\/>\B
 
 
-
+\B<|(\B\/.+)[\/h2>[].*
 
 
 

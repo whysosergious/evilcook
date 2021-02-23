@@ -43,10 +43,10 @@ const MenuContainer = props => {
 					style={{ opacity: 1 }}
 				/>
 				<div className={ `Heading-Group ${ headingState } va` } ref={ MenuHeading.ref }>
-					<h1>
+					<h1 data-zcm="menu.heading">
 						Våran Meny
 					</h1>
-					<h3>
+					<h3 data-zcm="menu.body">
 						Till ölen, och våra väl utvalda viner, hittar du en meny vi serverar med stolthet. All mat är gjord från grunden av bästa möjliga råvaror tillagad med kärlek.
 					</h3>
 				</div>

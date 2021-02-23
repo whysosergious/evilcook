@@ -135,8 +135,8 @@ const DoormatContainer = props => {
 
 
 				<div className={ `${ styles.headingGroup } ${ promoState } va` }>
-					<h1><span>En av de bästa</span>I världen</h1>
-					<h3>bodytext
+					<h1 data-zcm="promo.heading"><span>En av de bästa</span>I världen</h1>
+					<h3 data-zcm="promo.body">bodytext
 					</h3>
 					<Button altClass="underline"
 						text="Läs mer"
@@ -153,10 +153,10 @@ const DoormatContainer = props => {
 					style={{ opacity: 0.07 }}
 				/>
 				<div className={ `${ styles.headingGroup_left } ${ doormatState } va` }>
-					<h2>
+					<h2 data-zcm="doormat.heading">
 						Ett sortiment vi är stolta över
 					</h2>
-					<h3 className="small">
+					<h3 className="small" data-zcm="doormat.body">
 						På fat har vi 23 olika öl som roterar med sorter från världens bästa bryggerier. Bland våra 180+ olika flasköl, även där med ett alternerande sortiment, hittar du precis det du letar efter. Vi har nåt för alla.
 					</h3>
 					<Button altClass="underline small"

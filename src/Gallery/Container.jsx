@@ -56,7 +56,7 @@ const GalleryContainer = props => {
    return (
       <section className="Gallery-Container dark" ref={ Gallery.ref }>
 			<div className={ `Heading-Group ${ headingState } va` } ref={ GalleryHeading.ref }>
-				<h1>
+				<h1 data-zcm="gallery.heading">
 					Bildgalleri
 				</h1>
 			</div>
